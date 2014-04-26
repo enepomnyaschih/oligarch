@@ -14,6 +14,7 @@ OW.LevelData = function(data, level) {
 			}
 		}
 	}
+	this.diggedCells = {};
 	this.diggerIj = [OW.surfaceI, Math.floor(level.map.size / 2)];
 	this.diggerDir = 0;
 	this.selectedDir = 0;
@@ -57,21 +58,21 @@ JW.extend(OW.LevelData, JW.Class, {
 		if (speed) {
 			if (this.diggerOffset === 0) {
 				this.setCell(this.diggerIj, OW.map.digged);
+				this.diggedCells[this.diggerIj.join()] = true;
 				if (Math.abs(this.diggerDir - this.selectedDir) !== OW.dir.length / 2) {
 					this.diggerDir = this.selectedDir;
 				}
 			}
 			var digIj = this.getDigIj();
 			if (this.map.inMatrix(digIj)) {
-				var digCell = this.map.getCell(digIj);
-				/*if (digCell === OW.map.digged) {
+				if (this.diggedCells[digIj.join()]) {
 					alert("You digged to yourself!");
 					var index = this.data.levelIndex.get();
 					this.data.levelIndex.set(null);
 					this.data.levelIndex.set(index);
 					return;
-				}*/
-				if ((digCell !== OW.map.stone) && (digIj[0] > OW.surfaceI)) {
+				}
+				if ((this.map.getCell(digIj) !== OW.map.stone) && (digIj[0] > OW.surfaceI)) {
 					this.diggerOffset += speed;
 					if (this.diggerOffset > .5) {
 						this.diggerOffset -= 1;
