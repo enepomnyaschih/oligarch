@@ -1,0 +1,32 @@
+{
+	"requires": [
+		"bower_components/jquery/dist/jquery.js|auto",
+		"bower_components/jwidget/jwlib.js|auto",
+		"bower_components/jwidget/jwui.js|auto",
+		"thirdparty/reset.css"
+	],
+	
+	"resources": [
+		"ow/ow.js",
+		
+		"ow/app.js",
+		"ow/app.jw.html : OW.App",
+		"ow/app.styl",
+		"ow/data.js",
+		"ow/el.js",
+		"ow/level.js",
+		"ow/levelData.js",
+		"ow/levelView.js",
+		"ow/levelView.jw.html : OW.LevelView",
+		"ow/levelView.styl",
+		"ow/matrix.js",
+		"ow/monitor.js",
+		"ow/monitor.jw.html : OW.Monitor",
+		"ow/monitor.styl",
+		"ow/vector.js",
+		
+		"ow/levels.js",
+		
+		"ow/boot.js"
+	]
+}

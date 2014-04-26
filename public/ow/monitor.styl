@@ -1,0 +1,30 @@
+@import 'ow/imports'
+
+.ow-monitor
+	position relative
+	size 512px 512px
+	
+	&-cell
+		background transparent none scroll 0 0 no-repeat
+		float left
+		position relative
+		size 16px 16px
+		
+		&[ow-cell=c2]
+		&[ow-cell=c5]
+			background-color #7F3300
+			
+			&.o-surface
+				background-image url(../images/grass.png)
+		
+		&[ow-cell=c3]
+			background-color #7F3300
+			background-image url(../images/stone.png)
+		
+		&[ow-cell=c4]
+			background black
+	
+	&-digger
+		background transparent url(../images/digger.png) scroll 0 0 no-repeat
+		position absolute
+		size 16px 16px
