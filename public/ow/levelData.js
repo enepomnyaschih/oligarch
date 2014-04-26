@@ -25,6 +25,7 @@ OW.LevelData = function(data, level) {
 	tube.ij1.set(OW.Vector.add(tube.ij1.get(), [-.5, 0]));
 	this.punks = this.own(new JW.ObservableArray()).ownItems();
 	this.punkWins = this.own(new JW.ObservableArray()).ownItems();
+	this.punkPwns = this.own(new JW.ObservableArray()).ownItems();
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
@@ -74,9 +75,7 @@ JW.extend(OW.LevelData, JW.Class, {
 			if (this.map.inMatrix(digIj)) {
 				if (this.diggedCells[digIj.join()]) {
 					alert("You digged to yourself!");
-					var index = this.data.levelIndex.get();
-					this.data.levelIndex.set(null);
-					this.data.levelIndex.set(index);
+					this.restart();
 					return;
 				}
 				if ((this.map.getCell(digIj) !== OW.map.stone) && (digIj[0] > OW.surfaceI)) {
@@ -109,6 +108,7 @@ JW.extend(OW.LevelData, JW.Class, {
 		}
 		this.punks.each(JW.byMethod("move"));
 		this.punkWins.each(JW.byMethod("move"));
+		this.punkPwns.each(JW.byMethod("move"));
 		var punkWins = this.punks.$filter(JW.byMethod("isWin"));
 		punkWins.each(function(punk) {
 			this.punkWins.add(new OW.PunkWin());
@@ -120,9 +120,15 @@ JW.extend(OW.LevelData, JW.Class, {
 		if (Math.random() < this.level.countSurface / 200) {
 			this.punks.add(new OW.Punk());
 		}
+		this.punkPwns.performSplice(this.punkPwns.filter("isOut"));
 		if (this.oilRemaining.get() === 0) {
 			alert("You win!");
 			this.data.nextLevel();
+		}
+		if (this.punkWins.length.get() >= OW.maxPunksAllowed) {
+			alert("Too much Greenpeace got onto the platform! You lose =(");
+			this.restart();
+			return;
 		}
 		this.turn++;
 		this.turnEvent.trigger();
@@ -134,6 +140,12 @@ JW.extend(OW.LevelData, JW.Class, {
 	
 	getDigIj: function() {
 		return OW.Vector.add(this.diggerIj, OW.dir[this.diggerDir]);
+	},
+	
+	restart: function() {
+		var index = this.data.levelIndex.get();
+		this.data.levelIndex.set(null);
+		this.data.levelIndex.set(index);
 	},
 	
 	_createTube: function() {

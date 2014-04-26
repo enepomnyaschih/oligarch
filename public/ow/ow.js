@@ -7,6 +7,7 @@ var OW = {
 	diggerSpeed: 0.1,
 	stoneAmount: 10,
 	oilAmount: 10,
+	maxPunksAllowed: 5,
 	dir: [
 		[1, 0],
 		[0, 1],
