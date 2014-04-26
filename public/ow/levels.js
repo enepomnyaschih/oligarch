@@ -7,6 +7,22 @@ OW.Level.registerItem(new OW.Level({
 	countBeneath: 0,
 	allowPhoto: true,
 	quests: [
+		new OW.Jail({
+			turn: 100,
+			duration: 250
+		})
+	]
+}));
+
+OW.Level.registerItem(new OW.Level({
+	id: "round2",
+	theme: "siberia",
+	countStone: 8,
+	countOil: 3,
+	countSurface: 5,
+	countBeneath: 0,
+	allowPhoto: true,
+	quests: [
 		new OW.Fax({
 			turn: 300,
 			duration: 1000,
@@ -22,14 +38,4 @@ OW.Level.registerItem(new OW.Level({
 			wrongMessage: "Russia won't rise from its knees if you won't sign this up correctly!"
 		})
 	]
-}));
-
-OW.Level.registerItem(new OW.Level({
-	id: "round2",
-	theme: "siberia",
-	countStone: 8,
-	countOil: 3,
-	countSurface: 5,
-	countBeneath: 0,
-	allowPhoto: true
 }));

@@ -2,7 +2,7 @@
 
 /* Reset all application HTML elements */ 
 html, body, div, span, object, iframe, a, img, form, label,
-table, tbody, tfoot, thead, tr, th, td, canvas, embed, audio, video, button
+table, tbody, tfoot, thead, tr, th, td, canvas, embed, audio, video
 { border:0; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
 font-family:inherit; font-size:100%; margin:0; padding:0; vertical-align:baseline; }
 
@@ -15,8 +15,8 @@ a img { border:none; }
 :focus { outline:none; }
 
 /* Buttons */
-button { background:none; box-align:center; -moz-box-align:center; -webkit-box-align:center;
-color:inherit; cursor:pointer; display:block; text-align:inherit; }
+/*button { background:none; box-align:center; -moz-box-align:center; -webkit-box-align:center;
+color:inherit; cursor:pointer; display:block; text-align:inherit; }*/
 
 /*
 Next elements should be used in plain text blocks only (not resetted):

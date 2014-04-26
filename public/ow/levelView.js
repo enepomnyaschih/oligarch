@@ -13,6 +13,10 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 		return this.own(new OW.Monitor(this.levelData));
 	},
 	
+	renderArrest: function(el) {
+		this.own(new JW.UI.ClassUpdater(el, "o-enabled", this.levelData.jailCount));
+	},
+	
 	renderOilRemaining: function(el) {
 		this.own(new JW.UI.TextUpdater(el, this.levelData.oilRemaining));
 	},

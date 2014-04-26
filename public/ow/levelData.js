@@ -30,6 +30,7 @@ OW.LevelData = function(data, level) {
 	this.questData = this.own(new JW.Property()).ownValue();
 	this.questTime = this.own(new JW.Property());
 	this.levelQuestIndex = 0;
+	this.jailCount = this.own(new JW.Property());
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());

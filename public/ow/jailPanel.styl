@@ -1,0 +1,18 @@
+@import 'ow/imports'
+
+.ow-jail
+	&-phone
+		background transparent url(../images/fax.png) scroll 0 0 no-repeat
+		size 120px 89px
+		
+		&.o-blink
+			background-image url(../images/fax2.png)
+	
+	&-content
+		display none
+	
+	&.o-open &-phone
+		display none
+	
+	&.o-open &-content
+		display block
