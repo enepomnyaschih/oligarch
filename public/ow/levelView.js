@@ -13,6 +13,10 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 		return this.own(new OW.Monitor(this.levelData));
 	},
 	
+	renderOilRemaining: function(el) {
+		this.own(new JW.UI.TextUpdater(el, this.levelData.oilRemaining));
+	},
+	
 	_onKeyDown: function(e) {
 		switch (e.keyCode) {
 			case 40: this.levelData.selectedDir = 0; break;

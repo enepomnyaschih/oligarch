@@ -3,15 +3,22 @@ OW.LevelData = function(data, level) {
 	this.data = data;
 	this.level = level;
 	this.map = new OW.Matrix(level.map.size);
+	var oilCount = 0;
 	for (var i = 0; i < level.map.size; ++i) {
 		for (var j = 0; j < level.map.size; ++j) {
-			this.map.setCell([i, j], level.map.getCell([i, j]));
+			var ij = [i, j];
+			var cell = level.map.getCell(ij);
+			this.map.setCell(ij, cell);
+			if (cell === OW.map.oil) {
+				++oilCount;
+			}
 		}
 	}
 	this.diggerIj = [OW.surfaceI, Math.floor(level.map.size / 2)];
 	this.diggerDir = 0;
 	this.selectedDir = 0;
 	this.diggerOffset = 0;
+	this.oilRemaining = this.own(new JW.Property(oilCount));
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
@@ -25,6 +32,12 @@ JW.extend(OW.LevelData, JW.Class, {
 			return;
 		}
 		this.map.setCell(ij, value);
+		if (oldValue === OW.map.oil) {
+			this.oilRemaining.set(this.oilRemaining.get() - 1);
+		}
+		if (value === OW.map.oil) {
+			this.oilRemaining.set(this.oilRemaining.get() + 1);
+		}
 		this.cellChangeEvent.trigger(ij);
 	},
 	
@@ -84,6 +97,10 @@ JW.extend(OW.LevelData, JW.Class, {
 					}
 				}
 			}
+		}
+		if (this.oilRemaining.get() === 0) {
+			alert("You win!");
+			this.data.nextLevel();
 		}
 		this.turn++;
 		this.turnEvent.trigger();
