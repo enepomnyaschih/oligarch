@@ -14,10 +14,20 @@ OW.LevelData = function(data, level) {
 	this.diggerOffset = 0;
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
+	this.cellChangeEvent = this.own(new JW.Event());
 	this.own(new JW.Interval(this.nextTurn, this, 40));
 };
 
 JW.extend(OW.LevelData, JW.Class, {
+	setCell: function(ij, value) {
+		var oldValue = this.map.getCell(ij);
+		if (oldValue === value) {
+			return;
+		}
+		this.map.setCell(ij, value);
+		this.cellChangeEvent.trigger(ij);
+	},
+	
 	nextTurn: function() {
 		var speed = OW.diggerSpeed;
 		// догребаем к центру
@@ -33,7 +43,7 @@ JW.extend(OW.LevelData, JW.Class, {
 		if (speed) {
 			// если в центре и задано направление
 			if ((this.diggerOffset === 0) && (Math.abs(this.diggerDir - this.selectedDir) !== OW.dir.length / 2)) {
-				this.map.setCell(this.diggerIj, OW.map.digged);
+				this.setCell(this.diggerIj, OW.map.digged);
 				this.diggerDir = this.selectedDir;
 			}
 			var digIj = this.getDigIj();
