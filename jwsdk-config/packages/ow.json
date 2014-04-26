@@ -9,11 +9,18 @@
 	"resources": [
 		"ow/ow.js",
 		
+		"ow/quest.js",
+		
 		"ow/app.js",
 		"ow/app.jw.html : OW.App",
 		"ow/app.styl",
 		"ow/data.js",
 		"ow/el.js",
+		"ow/fax.js",
+		"ow/faxData.js",
+		"ow/faxPanel.js",
+		"ow/faxPanel.jw.html : OW.FaxPanel",
+		"ow/faxPanel.styl",
 		"ow/level.js",
 		"ow/levelData.js",
 		"ow/levelView.js",
@@ -23,6 +30,9 @@
 		"ow/monitor.js",
 		"ow/monitor.jw.html : OW.Monitor",
 		"ow/monitor.styl",
+		"ow/progress.js",
+		"ow/progress.jw.html : OW.Progress",
+		"ow/progress.styl",
 		"ow/punk.js",
 		"ow/punkView.js",
 		"ow/punkView.styl",

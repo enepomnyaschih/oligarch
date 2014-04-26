@@ -4,10 +4,6 @@ OW.App = function(data) {
 };
 
 JW.extend(OW.App, JW.UI.Component, {
-	renderRoot: function(el) {
-		el.mousedown(JW.UI.preventDefault);
-	},
-	
 	renderLevel: function() {
 		return this.own(new JW.Mapper([this.data.levelData], {
 			createValue: function(levelData) {

@@ -27,10 +27,13 @@ OW.LevelData = function(data, level) {
 	this.punkWins = this.own(new JW.ObservableArray()).ownItems();
 	this.punkPwns = this.own(new JW.ObservableArray()).ownItems();
 	this.blinding = this.own(new JW.Property(0));
+	this.questData = this.own(new JW.Property()).ownValue();
+	this.questTime = this.own(new JW.Property());
+	this.levelQuestIndex = 0;
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
-	this.own(new JW.Interval(this.nextTurn, this, 40));
+	this.interval = this.own(new JW.Interval(this.nextTurn, this, 40));
 };
 
 JW.extend(OW.LevelData, JW.Class, {
@@ -127,11 +130,25 @@ JW.extend(OW.LevelData, JW.Class, {
 			this.data.nextLevel();
 		}
 		if (this.punkWins.length.get() >= OW.maxPunksAllowed) {
-			alert("Too much Greenpeace got onto the platform! You lose =(");
+			alert("Too much Greenpeace got onto the platform!");
 			this.restart();
 			return;
 		}
 		this.blinding.set(Math.max(0, this.blinding.get() - 1));
+		var quest = JW.get(this.level, ["quests", this.levelQuestIndex]);
+		if (quest && (quest.turn === this.turn)) {
+			this.questTime.set(quest.duration);
+			this.questData.set(quest.createData(this));
+			++this.levelQuestIndex;
+		}
+		if (JW.isSet(this.questTime.get())) {
+			this.questTime.set(this.questTime.get() - 1);
+			if (this.questTime.get() === 0) {
+				alert("You couldn't deal with the quest in time!");
+				this.restart();
+				return;
+			}
+		}
 		this.turn++;
 		this.turnEvent.trigger();
 	},
@@ -150,6 +167,11 @@ JW.extend(OW.LevelData, JW.Class, {
 		this.data.levelIndex.set(index);
 	},
 	
+	winQuest: function() {
+		this.questData.set(null);
+		this.questTime.set(null);
+	},
+	
 	_createTube: function() {
 		var tube = new OW.Tube(this.diggerIj, this.diggerDir);
 		this.tubes.add(tube);
@@ -159,7 +181,6 @@ JW.extend(OW.LevelData, JW.Class, {
 	_updateTube: function() {
 		var tube = this.tubes.getLast();
 		tube.ij2.set(this.getFloatIj());
-		//tube.ij2.set(OW.Vector.add(this.getFloatIj(), OW.Vector.mult(OW.dir[this.diggerDir], -.5)));
 	},
 	
 	_tryOilCrawl: function(from, offset) {

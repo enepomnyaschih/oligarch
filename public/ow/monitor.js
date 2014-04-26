@@ -5,6 +5,7 @@ OW.Monitor = function(levelData) {
 
 JW.extend(OW.Monitor, JW.UI.Component, {
 	renderRoot: function(el) {
+		el.mousedown(JW.UI.preventDefault);
 		var opacity = this.own(new JW.Functor([this.levelData.blinding], function(blinding) {
 			return Math.max(0, 1 - blinding / OW.blindingTime);
 		}, this)).target;

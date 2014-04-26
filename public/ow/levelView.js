@@ -17,6 +17,30 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 		this.own(new JW.UI.TextUpdater(el, this.levelData.oilRemaining));
 	},
 	
+	renderQuest: function(el) {
+		this.own(new JW.UI.VisibleUpdater(el, this.levelData.questData));
+	},
+	
+	renderQuestTime: function() {
+		return this.own(new JW.Mapper([this.levelData.questData], {
+			createValue: function(questData) {
+				return new OW.Progress(this.levelData.questTime, new JW.Property(questData.quest.duration));
+			},
+			destroyValue: JW.destroy,
+			scope: this
+		})).target;
+	},
+	
+	renderQuestPanel: function() {
+		return this.own(new JW.Mapper([this.levelData.questData], {
+			createValue: function(questData) {
+				return questData.createPanel()
+			},
+			destroyValue: JW.destroy,
+			scope: this
+		})).target;
+	},
+	
 	_onKeyDown: function(e) {
 		switch (e.keyCode) {
 			case 40: this.levelData.selectedDir = 0; break;
