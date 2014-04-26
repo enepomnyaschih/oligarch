@@ -46,7 +46,7 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 		var target = jQuery(e.currentTarget);
 		var ij = [+target.attr("ow-i").substr(1), +target.attr("ow-j").substr(1)];
 		if ((this.levelData.diggerOffset === 0) && OW.Vector.equal(ij, this.levelData.getDigIj()) && (Math.random() < .2)) {
-			this.levelData.setCell(ij, OW.map.ground);
+			this.levelData.setCell(ij, OW.map.digged);
 		}
 	},
 	
