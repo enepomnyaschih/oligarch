@@ -39,6 +39,16 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 		})).target;
 	},
 	
+	renderPunks: function() {
+		return this.own(this.levelData.punks.createMapper({
+			createItem: function(punk) {
+				return new OW.PunkView(punk);
+			},
+			destroyItem: JW.destroy,
+			scope: this
+		})).target;
+	},
+	
 	_updateDigger: function() {
 		var el = this.getElement("digger");
 		var ij = OW.Vector.mult(this.levelData.getFloatIj(), OW.cellSize);

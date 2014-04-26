@@ -23,6 +23,7 @@ OW.LevelData = function(data, level) {
 	this.tubes = this.own(new JW.ObservableArray()).ownItems();
 	var tube = this._createTube();
 	tube.ij1.set(OW.Vector.add(tube.ij1.get(), [-.5, 0]));
+	this.punks = this.own(new JW.ObservableArray()).ownItems();
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
@@ -104,6 +105,10 @@ JW.extend(OW.LevelData, JW.Class, {
 					}
 				}
 			}
+		}
+		this.punks.each(JW.byMethod("move"));
+		if (Math.random() < this.level.countSurface / 200) {
+			this.punks.add(new OW.Punk());
 		}
 		if (this.oilRemaining.get() === 0) {
 			alert("You win!");
