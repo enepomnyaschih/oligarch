@@ -20,6 +20,9 @@ OW.LevelData = function(data, level) {
 	this.selectedDir = 0;
 	this.diggerOffset = 0;
 	this.oilRemaining = this.own(new JW.Property(oilCount));
+	this.tubes = this.own(new JW.ObservableArray()).ownItems();
+	var tube = this._createTube();
+	tube.ij1.set(OW.Vector.add(tube.ij1.get(), [-.5, 0]));
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
@@ -53,14 +56,16 @@ JW.extend(OW.LevelData, JW.Class, {
 			} else {
 				speed = 0;
 			}
+			this._updateTube();
 		}
 		// отгребаем из центра
 		if (speed) {
 			if (this.diggerOffset === 0) {
 				this.setCell(this.diggerIj, OW.map.digged);
 				this.diggedCells[this.diggerIj.join()] = true;
-				if (Math.abs(this.diggerDir - this.selectedDir) !== OW.dir.length / 2) {
+				if (this.diggerDir % 2 !== this.selectedDir % 2) {
 					this.diggerDir = this.selectedDir;
+					this._createTube();
 				}
 			}
 			var digIj = this.getDigIj();
@@ -78,6 +83,7 @@ JW.extend(OW.LevelData, JW.Class, {
 						this.diggerOffset -= 1;
 						this.diggerIj = digIj;
 					}
+					this._updateTube();
 				}
 			}
 		}
@@ -107,8 +113,24 @@ JW.extend(OW.LevelData, JW.Class, {
 		this.turnEvent.trigger();
 	},
 	
+	getFloatIj: function() {
+		return OW.Vector.add(this.diggerIj, OW.Vector.mult(OW.dir[this.diggerDir], this.diggerOffset));
+	},
+	
 	getDigIj: function() {
 		return OW.Vector.add(this.diggerIj, OW.dir[this.diggerDir]);
+	},
+	
+	_createTube: function() {
+		var tube = new OW.Tube(this.diggerIj, this.diggerDir);
+		this.tubes.add(tube);
+		return tube;
+	},
+	
+	_updateTube: function() {
+		var tube = this.tubes.getLast();
+		tube.ij2.set(this.getFloatIj());
+		//tube.ij2.set(OW.Vector.add(this.getFloatIj(), OW.Vector.mult(OW.dir[this.diggerDir], -.5)));
 	},
 	
 	_tryOilCrawl: function(from, offset) {

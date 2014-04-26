@@ -29,11 +29,19 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 		this.own(this.levelData.cellChangeEvent.bind(this._onCellChange, this));
 	},
 	
+	renderTubes: function() {
+		return this.own(this.levelData.tubes.createMapper({
+			createItem: function(tube) {
+				return (tube.dir % 2 === 0) ? new OW.TubeViewV(tube) : new OW.TubeViewH(tube);
+			},
+			destroyItem: JW.destroy,
+			scope: this
+		})).target;
+	},
+	
 	_updateDigger: function() {
 		var el = this.getElement("digger");
-		var ij = this.levelData.diggerIj;
-		ij = OW.Vector.mult(ij, OW.cellSize);
-		ij = OW.Vector.add(ij, OW.Vector.mult(OW.dir[this.levelData.diggerDir], OW.cellSize * this.levelData.diggerOffset));
+		var ij = OW.Vector.mult(this.levelData.getFloatIj(), OW.cellSize);
 		OW.El.xy(el, ij);
 		el.css("transform", "rotate(-" + (90 * this.levelData.diggerDir) + "deg)");
 	},

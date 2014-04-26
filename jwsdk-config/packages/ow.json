@@ -24,6 +24,10 @@
 		"ow/monitor.jw.html : OW.Monitor",
 		"ow/monitor.styl",
 		"ow/vector.js",
+		"ow/tube.js",
+		"ow/tube.styl",
+		"ow/tubeViewH.js",
+		"ow/tubeViewV.js",
 		
 		"ow/levels.js",
 		
