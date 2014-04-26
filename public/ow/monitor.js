@@ -49,6 +49,16 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 		})).target;
 	},
 	
+	renderPunkWins: function() {
+		return this.own(this.levelData.punkWins.createMapper({
+			createItem: function(punkWin) {
+				return new OW.PunkWinView(punkWin);
+			},
+			destroyItem: JW.destroy,
+			scope: this
+		})).target;
+	},
+	
 	_updateDigger: function() {
 		var el = this.getElement("digger");
 		var ij = OW.Vector.mult(this.levelData.getFloatIj(), OW.cellSize);

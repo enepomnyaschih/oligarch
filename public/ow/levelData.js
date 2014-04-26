@@ -24,6 +24,7 @@ OW.LevelData = function(data, level) {
 	var tube = this._createTube();
 	tube.ij1.set(OW.Vector.add(tube.ij1.get(), [-.5, 0]));
 	this.punks = this.own(new JW.ObservableArray()).ownItems();
+	this.punkWins = this.own(new JW.ObservableArray()).ownItems();
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
@@ -107,6 +108,15 @@ JW.extend(OW.LevelData, JW.Class, {
 			}
 		}
 		this.punks.each(JW.byMethod("move"));
+		this.punkWins.each(JW.byMethod("move"));
+		var punkWins = this.punks.$filter(JW.byMethod("isWin"));
+		punkWins.each(function(punk) {
+			this.punkWins.add(new OW.PunkWin());
+			this.punks.removeItem(punk);
+		}, this);
+		if (!punkWins.isEmpty()) {
+			this.punkWins.sort(JW.byField("y"));
+		}
 		if (Math.random() < this.level.countSurface / 200) {
 			this.punks.add(new OW.Punk());
 		}

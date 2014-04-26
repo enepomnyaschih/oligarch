@@ -10,5 +10,9 @@ JW.extend(OW.Punk, JW.Class, {
 	move: function() {
 		this.x.set(this.x.get() + this.speed * this.dir);
 		this.anim.set(this.anim.get() + this.speed);
+	},
+	
+	isWin: function() {
+		return Math.abs(this.x.get() - OW.mapSize * OW.cellSize / 2) < 30;
 	}
 });
