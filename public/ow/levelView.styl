@@ -1,6 +1,8 @@
 @import 'ow/imports'
 
 .ow-level
+	position relative
+	
 	&-monitor
 		background transparent none scroll 0 0 no-repeat
 		float left
@@ -26,3 +28,9 @@
 	
 	&-quest-time
 		display inline-block
+	
+	&-arrest-cursor
+		background transparent url(../images/arrest.png) scroll 0 0 no-repeat
+		pointer-events none
+		position absolute
+		size 36px 36px

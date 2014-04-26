@@ -29,7 +29,6 @@ JW.extend(OW.PunkView, JW.UI.Component, {
 	},
 	
 	_onMouseDown: function() {
-		this.levelData.punkPwns.add(new OW.PunkPwn(this.punk));
-		this.levelData.punks.removeItem(this.punk);
+		this.levelData.pwn(this.punk);
 	}
 });

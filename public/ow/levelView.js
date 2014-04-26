@@ -1,4 +1,7 @@
 OW.LevelView = function(levelData) {
+	this._onKeyDown = JW.inScope(this._onKeyDown, this);
+	this._onMouseMove = JW.inScope(this._onMouseMove, this);
+	this._onMouseDown = JW.inScope(this._onMouseDown, this);
 	OW.LevelView._super.call(this);
 	this.levelData = levelData;
 };
@@ -6,7 +9,9 @@ OW.LevelView = function(levelData) {
 JW.extend(OW.LevelView, JW.UI.Component, {
 	renderRoot: function(el) {
 		el.addClass("o-" + this.levelData.level.theme);
-		jQuery(window).keydown(JW.inScope(this._onKeyDown, this));
+		jQuery(window).bind("keydown", this._onKeyDown);
+		jQuery(window).bind("mousemove", this._onMouseMove);
+		jQuery(window).bind("mousedown", this._onMouseDown);
 	},
 	
 	renderMonitor: function() {
@@ -15,6 +20,9 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 	
 	renderArrest: function(el) {
 		this.own(new JW.UI.ClassUpdater(el, "o-enabled", this.levelData.jailCount));
+		el.click(JW.inScope(function() {
+			this.levelData.arrestCursor.set(true);
+		}, this));
 	},
 	
 	renderOilRemaining: function(el) {
@@ -45,6 +53,17 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 		})).target;
 	},
 	
+	renderArrestCursor: function(el) {
+		this.own(new JW.UI.VisibleUpdater(el, this.levelData.arrestCursor));
+	},
+	
+	destroyComponent: function() {
+		jQuery(window).unbind("keydown", this._onKeyDown);
+		jQuery(window).unbind("mousemove", this._onMouseMove);
+		jQuery(window).unbind("mousedown", this._onMouseDown);
+		this._super();
+	},
+	
 	_onKeyDown: function(e) {
 		switch (e.keyCode) {
 			case 40: this.levelData.selectedDir = 0; break;
@@ -52,5 +71,17 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 			case 38: this.levelData.selectedDir = 2; break;
 			case 37: this.levelData.selectedDir = 3; break;
 		}
+	},
+	
+	_onMouseMove: function(e) {
+		var offset = this.el.position();
+		this.getElement("arrest-cursor").css({
+			left: (Math.min(jQuery(window).width () - 56, e.pageX) - offset.left + 20) + "px",
+			top : (Math.min(jQuery(window).height() - 56, e.pageY) - offset.top  + 20) + "px"
+		});
+	},
+	
+	_onMouseDown: function() {
+		this.levelData.arrestCursor.set(false);
 	}
 });

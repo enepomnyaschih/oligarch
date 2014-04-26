@@ -31,6 +31,8 @@ OW.LevelData = function(data, level) {
 	this.questTime = this.own(new JW.Property());
 	this.levelQuestIndex = 0;
 	this.jailCount = this.own(new JW.Property());
+	this.jailCurrent = 0;
+	this.arrestCursor = this.own(new JW.Property(false));
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
@@ -171,6 +173,31 @@ JW.extend(OW.LevelData, JW.Class, {
 	winQuest: function() {
 		this.questData.set(null);
 		this.questTime.set(null);
+	},
+	
+	pwn: function(punk) {
+		var jailCount = this.jailCount.get();
+		if (JW.isSet(jailCount)) {
+			if (!this.arrestCursor.get() && (this.jailCurrent === jailCount - 1)) {
+				alert("You repelled a Greenpeace member that you must've arrested!");
+				this.restart();
+				return;
+			}
+			if (this.arrestCursor.get() && (this.jailCurrent !== jailCount - 1)) {
+				alert("You arrested a Greenpeace member that you must've repelled!");
+				this.restart();
+				return;
+			}
+		}
+		this.punkPwns.add(new OW.PunkPwn(punk, this.arrestCursor.get()));
+		this.punks.removeItem(punk);
+		if (JW.isSet(jailCount)) {
+			if (this.arrestCursor.get()) {
+				this.jailCurrent = 0;
+			} else {
+				++this.jailCurrent;
+			}
+		}
 	},
 	
 	_createTube: function() {
