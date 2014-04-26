@@ -4,7 +4,8 @@ OW.Level.registerItem(new OW.Level({
 	countStone: 5,
 	countOil: 2,
 	countSurface: 5,
-	countBeneath: 0
+	countBeneath: 0,
+	allowPhoto: true
 }));
 
 OW.Level.registerItem(new OW.Level({
@@ -12,6 +13,7 @@ OW.Level.registerItem(new OW.Level({
 	theme: "siberia",
 	countStone: 8,
 	countOil: 3,
-	countSurface: 0,
-	countBeneath: 0
+	countSurface: 5,
+	countBeneath: 0,
+	allowPhoto: true
 }));

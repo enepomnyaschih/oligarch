@@ -8,6 +8,7 @@ var OW = {
 	stoneAmount: 10,
 	oilAmount: 10,
 	maxPunksAllowed: 5,
+	blindingTime: 100,
 	dir: [
 		[1, 0],
 		[0, 1],

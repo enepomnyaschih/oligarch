@@ -4,6 +4,13 @@ OW.Monitor = function(levelData) {
 };
 
 JW.extend(OW.Monitor, JW.UI.Component, {
+	renderRoot: function(el) {
+		var opacity = this.own(new JW.Functor([this.levelData.blinding], function(blinding) {
+			return Math.max(0, 1 - blinding / OW.blindingTime);
+		}, this)).target;
+		this.own(new JW.UI.CssUpdater(el, "opacity", opacity));
+	},
+	
 	renderMap: function(el) {
 		el.addClass("ow-monitor");
 		el.on("mousedown", ".ow-monitor-cell[ow-cell=c3]", JW.inScope(this._onStoneClick, this));

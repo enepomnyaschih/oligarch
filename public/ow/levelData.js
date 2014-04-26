@@ -26,6 +26,7 @@ OW.LevelData = function(data, level) {
 	this.punks = this.own(new JW.ObservableArray()).ownItems();
 	this.punkWins = this.own(new JW.ObservableArray()).ownItems();
 	this.punkPwns = this.own(new JW.ObservableArray()).ownItems();
+	this.blinding = this.own(new JW.Property(0));
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
@@ -118,7 +119,7 @@ JW.extend(OW.LevelData, JW.Class, {
 			this.punkWins.sort(JW.byField("y"));
 		}
 		if (Math.random() < this.level.countSurface / 200) {
-			this.punks.add(new OW.Punk());
+			this.punks.add(new OW.Punk(this));
 		}
 		this.punkPwns.removeItems(this.punkPwns.filter(JW.byMethod("isOut")));
 		if (this.oilRemaining.get() === 0) {
@@ -130,6 +131,7 @@ JW.extend(OW.LevelData, JW.Class, {
 			this.restart();
 			return;
 		}
+		this.blinding.set(Math.max(0, this.blinding.get() - 1));
 		this.turn++;
 		this.turnEvent.trigger();
 	},

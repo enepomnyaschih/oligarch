@@ -6,6 +6,7 @@ OW.Level = function(config) {
 	this.countOil = config.countOil;
 	this.countSurface = config.countSurface;
 	this.countBeneath = config.countBeneath;
+	this.allowPhoto = config.allowPhoto || false;
 	this.map = new OW.Matrix(OW.mapSize);
 	for (var i = 0; i < this.map.size; ++i) {
 		for (var j = 0; j < this.map.size; ++j) {
