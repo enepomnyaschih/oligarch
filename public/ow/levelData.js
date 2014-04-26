@@ -120,7 +120,7 @@ JW.extend(OW.LevelData, JW.Class, {
 		if (Math.random() < this.level.countSurface / 200) {
 			this.punks.add(new OW.Punk());
 		}
-		this.punkPwns.performSplice(this.punkPwns.filter("isOut"));
+		this.punkPwns.removeItems(this.punkPwns.filter(JW.byMethod("isOut")));
 		if (this.oilRemaining.get() === 0) {
 			alert("You win!");
 			this.data.nextLevel();

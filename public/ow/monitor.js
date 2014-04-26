@@ -42,7 +42,7 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 	renderPunks: function() {
 		return this.own(this.levelData.punks.createMapper({
 			createItem: function(punk) {
-				return new OW.PunkView(punk);
+				return new OW.PunkView(this.levelData, punk);
 			},
 			destroyItem: JW.destroy,
 			scope: this
@@ -53,6 +53,16 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 		return this.own(this.levelData.punkWins.createMapper({
 			createItem: function(punkWin) {
 				return new OW.PunkWinView(punkWin);
+			},
+			destroyItem: JW.destroy,
+			scope: this
+		})).target;
+	},
+	
+	renderPunkPwns: function(el) {
+		return this.own(this.levelData.punkPwns.createMapper({
+			createItem: function(punkPwn) {
+				return new OW.PunkPwnView(punkPwn);
 			},
 			destroyItem: JW.destroy,
 			scope: this
