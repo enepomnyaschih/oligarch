@@ -8,8 +8,8 @@ JW.extend(OW.PunkPwnView, JW.UI.Component, {
 		el.addClass("ow-punk-pwn");
 		el.addClass("o-" + ((this.punkPwn.dir === 1) ? "right" : "left"));
 		
-		if (this.punkPwn.arrest) {
-			el.addClass("o-arrest");
+		if (this.punkPwn.cls) {
+			el.addClass(this.punkPwn.cls);
 		}
 		
 		var left = this.own(new JW.Functor([this.punkPwn.x], function(x) {

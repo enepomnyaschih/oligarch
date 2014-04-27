@@ -7,6 +7,7 @@ OW.Level.registerItem(new OW.Level({
 	countSurface: 5,
 	countBeneath: 0,
 	allowPhoto: true,
+	allowAuto: true,
 	quests: [
 		new OW.Jail({
 			turn: 100,

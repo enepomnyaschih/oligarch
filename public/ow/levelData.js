@@ -210,9 +210,27 @@ JW.extend(OW.LevelData, JW.Class, {
 				return;
 			}
 		}
-		this.punkPwns.add(new OW.PunkPwn(punk, this.arrestCursor.get()));
+		if (this.arrestCursor.get()) {
+			this.pwnNow(punk);
+		} else if (punk.auto) {
+			this.punkPwns.add(new OW.PunkPwn(punk, "o-auto"));
+			var survivor = new OW.Punk(this);
+			survivor.dir = punk.dir;
+			survivor.x.set(punk.x.get());
+			survivor.speed = punk.speed / 2;
+			survivor.photo = false;
+			survivor.auto = false;
+			this.punks.add(survivor);
+			this.punks.removeItem(punk);
+		} else {
+			this.pwnNow(punk);
+		}
+	},
+	
+	pwnNow: function(punk) {
+		this.punkPwns.add(new OW.PunkPwn(punk, this.arrestCursor.get() ? "o-arrest" : null));
 		this.punks.removeItem(punk);
-		if (JW.isSet(jailCount)) {
+		if (JW.isSet(this.jailCount.get())) {
 			if (this.arrestCursor.get()) {
 				this.jailCurrent = 0;
 			} else {

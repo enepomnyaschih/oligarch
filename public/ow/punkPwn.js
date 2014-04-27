@@ -1,6 +1,6 @@
-OW.PunkPwn = function(punk, arrest) {
+OW.PunkPwn = function(punk, cls) {
 	OW.PunkPwn._super.call(this);
-	this.arrest = arrest;
+	this.cls = cls;
 	this.dir = punk.dir;
 	this.x = this.own(new JW.Property(punk.x.get()));
 	this.y = this.own(new JW.Property(OW.cellSize * OW.surfaceI - 8));

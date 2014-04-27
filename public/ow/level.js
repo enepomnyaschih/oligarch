@@ -8,6 +8,7 @@ OW.Level = function(config) {
 	this.countSurface = config.countSurface || 0;
 	this.countBeneath = config.countBeneath || 0;
 	this.allowPhoto = config.allowPhoto || false;
+	this.allowAuto = config.allowAuto || false;
 	this.quests = config.quests;
 	this.map = new OW.Matrix(OW.mapSize);
 	for (var i = 0; i < this.map.size; ++i) {
