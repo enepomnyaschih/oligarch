@@ -25,6 +25,7 @@ OW.LevelData = function(data, level) {
 	tube.ij1.set(OW.Vector.add(tube.ij1.get(), [-.5, 0]));
 	this.punks = this.own(new JW.ObservableArray()).ownItems();
 	this.punkWins = this.own(new JW.ObservableArray()).ownItems();
+	this.explosions = this.own(new JW.ObservableArray()).ownItems();
 	this.punkPwns = this.own(new JW.ObservableArray()).ownItems();
 	this.blinding = this.own(new JW.Property(0));
 	this.questData = this.own(new JW.Property()).ownValue();
@@ -56,6 +57,11 @@ JW.extend(OW.LevelData, JW.Class, {
 	},
 	
 	nextTurn: function() {
+		if (!this.explosions.isEmpty()) {
+			alert("Metan has exploded!");
+			this.restart();
+			return;
+		}
 		var speed = OW.diggerSpeed;
 		// догребаем к центру
 		if (this.diggerOffset < 0) {
@@ -73,6 +79,12 @@ JW.extend(OW.LevelData, JW.Class, {
 			if (this.diggerOffset === 0) {
 				this.setCell(this.diggerIj, OW.map.digged);
 				this.diggedCells[this.diggerIj.join()] = true;
+				for (var d = 0; d < OW.dir.length; ++d) {
+					var adj = OW.Vector.add(this.diggerIj, OW.dir[d]);
+					if (this.map.getCell(adj) === OW.map.metan) {
+						this.explosions.add(new OW.Explosion(OW.Vector.mult(OW.Vector.add(adj, [.5, .5]), OW.cellSize)));
+					}
+				}
 				if (this.diggerDir % 2 !== this.selectedDir % 2) {
 					this.diggerDir = this.selectedDir;
 					this._createTube();

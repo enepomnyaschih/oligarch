@@ -2,10 +2,11 @@ OW.Level = function(config) {
 	OW.Level._super.call(this);
 	this.id = config.id;
 	this.theme = config.theme;
-	this.countStone = config.countStone;
-	this.countOil = config.countOil;
-	this.countSurface = config.countSurface;
-	this.countBeneath = config.countBeneath;
+	this.countStone = config.countStone || 0;
+	this.countOil = config.countOil || 0;
+	this.countMetan = config.countMetan || 0;
+	this.countSurface = config.countSurface || 0;
+	this.countBeneath = config.countBeneath || 0;
 	this.allowPhoto = config.allowPhoto || false;
 	this.quests = config.quests;
 	this.map = new OW.Matrix(OW.mapSize);
@@ -36,6 +37,13 @@ OW.Level = function(config) {
 				taken[adj.join()] = true;
 			}
 		}
+	}
+	for (var k = 0; k < this.countMetan; ++k) {
+		var ij = [
+			Math.floor((this.map.size - OW.stoneI) * Math.random()) + OW.stoneI,
+			Math.floor(this.map.size * Math.random())
+		];
+		this.map.setCell(ij, OW.map.metan);
 	}
 	for (var k = 0; k < this.countOil; ++k) {
 		var ij = [

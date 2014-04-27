@@ -3,6 +3,7 @@ OW.Level.registerItem(new OW.Level({
 	theme: "siberia",
 	countStone: 5,
 	countOil: 2,
+	countMetan: 2,
 	countSurface: 5,
 	countBeneath: 0,
 	allowPhoto: true,

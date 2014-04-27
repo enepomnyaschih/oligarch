@@ -67,6 +67,16 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 		})).target;
 	},
 	
+	renderExplosions: function() {
+		return this.own(this.levelData.explosions.createMapper({
+			createItem: function(explosion) {
+				return new OW.ExplosionView(explosion);
+			},
+			destroyItem: JW.destroy,
+			scope: this
+		})).target;
+	},
+	
 	renderPunkPwns: function(el) {
 		return this.own(this.levelData.punkPwns.createMapper({
 			createItem: function(punkPwn) {

@@ -9,6 +9,7 @@ var OW = {
 	oilAmount: 10,
 	maxPunksAllowed: 5,
 	blindingTime: 100,
+	explosionTime: 25,
 	dir: [
 		[1, 0],
 		[0, 1],
@@ -20,6 +21,7 @@ var OW = {
 		ground: 2,
 		stone: 3,
 		oil: 4,
-		digged: 5
+		digged: 5,
+		metan: 6
 	}
 };
