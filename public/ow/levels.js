@@ -55,7 +55,7 @@ OW.Level.registerItem(new OW.Level({
 				'<p>Please sign this document up. Sara, secretary</p>' +
 				'<h3>Secret scouting order</h3>' +
 				'<p>Assign Anna Shoutman to a spy operation against Greenpeace to discover their in-house ' +
-				'situation and gather some compomising documents.</p>' +
+				'situation and gather some compromising documents.</p>' +
 				'<p style="color: gray;">Hint: Sign as "Oligarenko".</p>' +
 				'<p style="color: gray;">Hint: Leave blank if this is not something you want to sign up.</p>',
 			answer: "Oligarenko",
