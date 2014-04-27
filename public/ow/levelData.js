@@ -73,7 +73,7 @@ JW.extend(OW.LevelData, JW.Class, {
 	
 	nextTurn: function() {
 		if (!this.explosions.isEmpty()) {
-			alert("Metan has exploded!");
+			alert("Methane has exploded!");
 			this.restart();
 			return;
 		}
