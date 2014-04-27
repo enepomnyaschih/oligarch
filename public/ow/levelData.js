@@ -141,7 +141,11 @@ JW.extend(OW.LevelData, JW.Class, {
 						}
 						var add = [0, s ? -1 : 1];
 						var adj = OW.Vector.add(ij, add);
-						var underCell = this.map.getCell(OW.Vector.add(adj, [1, 0]));
+						var under = OW.Vector.add(adj, [1, 0]);
+						if (OW.Vector.equal(under, this.diggerIj) && (OW.dir[this.diggerDir][1] === (s ? 1 : -1))) {
+							continue;
+						}
+						var underCell = this.map.getCell(under);
 						if (underCell === OW.map.digged) {
 							this._tryOilCrawl(ij, add);
 						}

@@ -17,7 +17,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round3",
-	name: "Media",
+	name: "Paparazzi",
 	theme: "siberia",
 	countStone: 5,
 	countOil: 2,
@@ -27,7 +27,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round4",
-	name: "Secretary",
+	name: "Bequest",
 	theme: "siberia",
 	countStone: 6,
 	countOil: 4,
@@ -54,7 +54,7 @@ OW.Level.registerItem(new OW.Level({
 			html:
 				'<p>Please sign this document up. Sara, secretary</p>' +
 				'<h3>Secret scouting order</h3>' +
-				'<p>Assign Anna Chapman to a spy operation against Greenpeace to discover their in-house ' +
+				'<p>Assign Anna Shoutman to a spy operation against Greenpeace to discover their in-house ' +
 				'situation and gather some compomising documents.</p>' +
 				'<p style="color: gray;">Hint: Sign as "Oligarenko".</p>' +
 				'<p style="color: gray;">Hint: Leave blank if this is not something you want to sign up.</p>',
@@ -66,7 +66,7 @@ OW.Level.registerItem(new OW.Level({
 			duration: 500,
 			html:
 				'<p>Please sign this document up. Sara, secretary</p>' +
-				'<h3>Testimony</h3>' +
+				'<h3>Bequest</h3>' +
 				'<p>I bequeath my corporation, all my money and all my property to Sara, my current secretary.</p>' +
 				'<p style="color: gray;">Hint: Sign as "Oligarenko".</p>' +
 				'<p style="color: gray;">Hint: Leave blank if this is not something you want to sign up.</p>',
@@ -81,12 +81,12 @@ OW.Level.registerItem(new OW.Level({
 	name: "Judo buddy",
 	theme: "siberia",
 	countStone: 8,
-	countOil: 2,
+	countOil: 4,
 	countSurface: 5,
 	probPhoto: .2,
 	quests: [
 		new OW.Jail({
-			turn: 300,
+			turn: 200,
 			duration: 400
 		})
 	]
@@ -94,7 +94,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round6",
-	name: "Metan",
+	name: "Big bang",
 	theme: "siberia",
 	countStone: 8,
 	countOil: 3,
@@ -104,15 +104,15 @@ OW.Level.registerItem(new OW.Level({
 	quests: [
 		new OW.RandomFax({
 			turn: 500,
-			duration: 700
+			duration: 800
 		}),
 		new OW.RandomFax({
 			turn: 1400,
-			duration: 650
+			duration: 750
 		}),
 		new OW.RandomFax({
 			turn: 2500,
-			duration: 600
+			duration: 700
 		})
 	]
 }));
@@ -122,27 +122,86 @@ OW.Level.registerItem(new OW.Level({
 	name: "Formula 1",
 	theme: "siberia",
 	countStone: 8,
-	countOil: 3,
+	countOil: 4,
 	countMetan: 5,
 	countSurface: 5,
-	probPhoto: .2,
-	probAuto: .5,
+	probAuto: 1,
 	quests: [
 		new OW.Jail({
-			turn: 500,
-			duration: 350
-		}),
-		new OW.RandomFax({
 			turn: 1000,
+			duration: 350
+		})
+	]
+}));
+
+OW.Level.registerItem(new OW.Level({
+	id: "round8",
+	name: "Like Ceasar",
+	theme: "siberia",
+	countStone: 10,
+	countOil: 4,
+	countMetan: 8,
+	countSurface: 5,
+	probPhoto: .2,
+	probAuto: .4,
+	quests: [
+		new OW.RandomFax({
+			turn: 300,
 			duration: 700
 		}),
+		new OW.Jail({
+			turn: 1100,
+			duration: 300
+		}),
 		new OW.RandomFax({
-			turn: 1800,
-			duration: 600
+			turn: 1500,
+			duration: 900
 		}),
 		new OW.RandomFax({
 			turn: 2500,
-			duration: 500
+			duration: 850
+		}),
+		new OW.RandomFax({
+			turn: 3500,
+			duration: 800
+		})
+	]
+}));
+
+OW.Level.registerItem(new OW.Level({
+	id: "round9",
+	name: "Bitterness",
+	theme: "siberia",
+	countStone: 15,
+	countOil: 8,
+	countMetan: 8,
+	countSurface: 10,
+	probPhoto: .2,
+	probAuto: .3,
+	quests: [
+		new OW.RandomFax({
+			turn: 1000,
+			duration: 900
+		}),
+		new OW.RandomFax({
+			turn: 2000,
+			duration: 800
+		}),
+		new OW.RandomFax({
+			turn: 3000,
+			duration: 700
+		}),
+		new OW.RandomFax({
+			turn: 4000,
+			duration: 700
+		}),
+		new OW.RandomFax({
+			turn: 5000,
+			duration: 700
+		}),
+		new OW.RandomFax({
+			turn: 6000,
+			duration: 700
 		})
 	]
 }));

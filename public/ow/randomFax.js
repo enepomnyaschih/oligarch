@@ -39,11 +39,11 @@ OW.RandomFax.gens = [
 		return {
 			html:
 				'<h3>Question from decryption team</h3>' +
-				'<p>Boss, we have a trouble decrypting Anna Chapman\'s message about Greenpeace! Only you can help us. ' +
+				'<p>Boss, we have a trouble decrypting Anna Shoutman\'s message about Greenpeace! Only you can help us. ' +
 				'Please write down each ' + n + '\'th letter in the next word:</p>' +
 				'<pre>' + word + '</pre>',
 			answer: answer,
-			wrongMessage: "Decryption team has got wrong results and now Anna Chapman is caught by Greenpeace!"
+			wrongMessage: "Decryption team has got wrong results and now Anna Shoutman is caught by Greenpeace!"
 		};
 	},
 	function() {
@@ -57,11 +57,11 @@ OW.RandomFax.gens = [
 		return {
 			html:
 				'<h3>Question from decryption team</h3>' +
-				'<p>Boss, we have a trouble decrypting Anna Chapman\'s message about Greenpeace! Only you can help us. ' +
+				'<p>Boss, we have a trouble decrypting Anna Shoutman\'s message about Greenpeace! Only you can help us. ' +
 				'Please write the letters of this word in reverse order:</p>' +
 				'<pre>' + word + '</pre>',
 			answer: answer,
-			wrongMessage: "Decryption team has got wrong results and now Anna Chapman is caught by Greenpeace!"
+			wrongMessage: "Decryption team has got wrong results and now Anna Shoutman is caught by Greenpeace!"
 		};
 	}
 ];
