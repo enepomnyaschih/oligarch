@@ -78,20 +78,22 @@ JW.extend(OW.LevelData, JW.Class, {
 					this._createTube();
 				}
 			}
-			var digIj = this.getDigIj();
-			if (this.map.inMatrix(digIj)) {
-				if (this.diggedCells[digIj.join()]) {
-					alert("You digged to yourself!");
-					this.restart();
-					return;
-				}
-				if ((this.map.getCell(digIj) !== OW.map.stone) && (digIj[0] > OW.surfaceI)) {
-					this.diggerOffset += speed;
-					if (this.diggerOffset > .5) {
-						this.diggerOffset -= 1;
-						this.diggerIj = digIj;
+			if ((this.diggerOffset !== 0) || (this.diggerDir === this.selectedDir)) {
+				var digIj = this.getDigIj();
+				if (this.map.inMatrix(digIj)) {
+					if (this.diggedCells[digIj.join()]) {
+						alert("You digged to yourself!");
+						this.restart();
+						return;
 					}
-					this._updateTube();
+					if ((this.map.getCell(digIj) !== OW.map.stone) && (digIj[0] > OW.surfaceI)) {
+						this.diggerOffset += speed;
+						if (this.diggerOffset > .5) {
+							this.diggerOffset -= 1;
+							this.diggerIj = digIj;
+						}
+						this._updateTube();
+					}
 				}
 			}
 		}
