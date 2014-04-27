@@ -99,6 +99,14 @@ OW.Level.registerItem(new OW.Level({
 		new OW.RandomFax({
 			turn: 500,
 			duration: 700
+		}),
+		new OW.RandomFax({
+			turn: 1400,
+			duration: 650
+		}),
+		new OW.RandomFax({
+			turn: 2500,
+			duration: 600
 		})
 	]
 }));
@@ -120,6 +128,14 @@ OW.Level.registerItem(new OW.Level({
 		new OW.RandomFax({
 			turn: 1000,
 			duration: 700
+		}),
+		new OW.RandomFax({
+			turn: 1800,
+			duration: 600
+		}),
+		new OW.RandomFax({
+			turn: 2500,
+			duration: 500
 		})
 	]
 }));

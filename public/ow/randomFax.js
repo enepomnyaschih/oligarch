@@ -9,7 +9,7 @@ JW.extend(OW.RandomFax, OW.Quest, {
 	}
 });
 
-OW.RandomFax.gens = [/*
+OW.RandomFax.gens = [
 	function() {
 		var a = Math.floor(8 * Math.random()) + 2;
 		var b = Math.floor(8 * Math.random()) + 2;
@@ -24,7 +24,7 @@ OW.RandomFax.gens = [/*
 			answer: String(a * b + c),
 			wrongMessage: "Mr." + mr + " hasn't got correct salary! Now, as he left, your corporation is paralized."
 		};
-	},*/
+	},
 	function() {
 		var word = '';
 		var answer = '';
@@ -41,6 +41,24 @@ OW.RandomFax.gens = [/*
 				'<h3>Question from decryption team</h3>' +
 				'<p>Boss, we have a trouble decrypting Anna Chapman\'s message about Greenpeace! Only you can help us. ' +
 				'Please write down each ' + n + '\'th letter in the next word:</p>' +
+				'<pre>' + word + '</pre>',
+			answer: answer,
+			wrongMessage: "Decryption team has got wrong results and now Anna Chapman is caught by Greenpeace!"
+		};
+	},
+	function() {
+		var word = '';
+		var answer = '';
+		for (var i = 0; i < 6; ++i) {
+			var c = String.fromCharCode(('a').charCodeAt(0) + Math.floor(26 * Math.random()));
+			word += c;
+			answer = c + answer;
+		}
+		return {
+			html:
+				'<h3>Question from decryption team</h3>' +
+				'<p>Boss, we have a trouble decrypting Anna Chapman\'s message about Greenpeace! Only you can help us. ' +
+				'Please write the letters of this word in reverse order:</p>' +
 				'<pre>' + word + '</pre>',
 			answer: answer,
 			wrongMessage: "Decryption team has got wrong results and now Anna Chapman is caught by Greenpeace!"
