@@ -19,7 +19,7 @@ OW.Level.registerItem(new OW.Level({
 	countStone: 5,
 	countOil: 2,
 	countSurface: 5,
-	allowPhoto: true
+	probPhoto: .4
 }));
 
 OW.Level.registerItem(new OW.Level({
@@ -28,7 +28,7 @@ OW.Level.registerItem(new OW.Level({
 	countStone: 6,
 	countOil: 4,
 	countSurface: 3,
-	allowPhoto: true,
+	probPhoto: .2,
 	quests: [
 		new OW.Fax({
 			turn: 300,
@@ -78,7 +78,7 @@ OW.Level.registerItem(new OW.Level({
 	countStone: 8,
 	countOil: 2,
 	countSurface: 5,
-	allowPhoto: true,
+	probPhoto: .2,
 	quests: [
 		new OW.Jail({
 			turn: 300,
@@ -92,53 +92,34 @@ OW.Level.registerItem(new OW.Level({
 	theme: "siberia",
 	countStone: 8,
 	countOil: 3,
-	countMetan: 3,
-	countSurface: 5,
-	allowPhoto: true,
+	countMetan: 8,
+	countSurface: 6,
+	probPhoto: .2,
 	quests: [
-		/*new OW.RandomFax({
-			turn: 800,
+		new OW.RandomFax({
+			turn: 500,
 			duration: 700
-		})*/
-	]
-}));
-/*
-	countMetan: 0,
-	countSurface: 5,
-	countBeneath: 0,
-	allowPhoto: true,
-	allowAuto: true,
-	quests: [
-		new OW.Jail({
-			turn: 100,
-			duration: 250
 		})
 	]
 }));
 
 OW.Level.registerItem(new OW.Level({
-	id: "round2",
+	id: "round6",
 	theme: "siberia",
 	countStone: 8,
 	countOil: 3,
+	countMetan: 5,
 	countSurface: 5,
-	countBeneath: 0,
-	allowPhoto: true,
+	probPhoto: .2,
+	probAuto: .5,
 	quests: [
-		new OW.Fax({
-			turn: 300,
-			duration: 1000,
-			html:
-				'<p>Please sign this document up. Sara, secretary</p>' +
-				'<h3>Statement of a crime</h3>' +
-				'<p>We found a bandit in our Arctic oil platform who was trying to gather information about ' +
-				'the penguins who were killed during platform construction. Order booking of this guy into ' +
-				'Zamoskvoretsky tribunal in Moscow city.</p>' +
-				'<p style="color: gray;">Hint: Sign as "Oligarenko".</p>' +
-				'<p style="color: gray;">Hint: Leave blank if this is not something you want to sign up.</p>',
-			answer: "Oligarenko",
-			wrongMessage: "Russia won't rise from its knees if you won't sign this up correctly!"
+		new OW.Jail({
+			turn: 500,
+			duration: 350
+		}),
+		new OW.RandomFax({
+			turn: 1000,
+			duration: 700
 		})
 	]
 }));
-*/

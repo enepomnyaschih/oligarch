@@ -5,8 +5,8 @@ OW.Punk = function(levelData) {
 	this.x = this.own(new JW.Property((this.dir === 1) ? -20 : (OW.mapSize * OW.cellSize + 20)));
 	this.speed = .5 + Math.random();
 	this.anim = this.own(new JW.Property(0));
-	this.photo = levelData.level.allowPhoto && (Math.random() < .2);
-	this.auto = !this.photo && levelData.level.allowAuto && (Math.random() < .55);
+	this.photo = Math.random() < levelData.level.probPhoto;
+	this.auto = !this.photo && (Math.random() < levelData.level.allowAuto);
 	if (this.auto) {
 		this.speed = 1 + Math.random();
 	}

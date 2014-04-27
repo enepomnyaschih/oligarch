@@ -15,7 +15,7 @@ JW.extend(OW.FaxPanel, JW.UI.Component, {
 	},
 	
 	renderHtml: function(el) {
-		el.html(this.faxData.quest.html);
+		el.html(this.faxData.config.html);
 	},
 	
 	renderForm: function(el) {

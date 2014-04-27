@@ -7,8 +7,8 @@ OW.Level = function(config) {
 	this.countMetan = config.countMetan || 0;
 	this.countSurface = config.countSurface || 0;
 	this.countBeneath = config.countBeneath || 0;
-	this.allowPhoto = config.allowPhoto || false;
-	this.allowAuto = config.allowAuto || false;
+	this.probPhoto = config.probPhoto || 0;
+	this.probAuto = config.probAuto || 0;
 	this.quests = config.quests;
 	this.map = new OW.Matrix(OW.mapSize);
 	for (var i = 0; i < this.map.size; ++i) {
@@ -88,7 +88,8 @@ OW.Level = function(config) {
 				if (!this.map.inMatrix(adj)) {
 					continue;
 				}
-				if (this.map.getCell(adj) === OW.map.ground) {
+				var adjCell = this.map.getCell(adj);
+				if ((adjCell === OW.map.ground) || (adjCell === OW.map.metan)) {
 					this.map.setCell(adj, OW.map.stone);
 				}
 			}

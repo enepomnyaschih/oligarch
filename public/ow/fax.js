@@ -7,6 +7,6 @@ OW.Fax = function(config) {
 
 JW.extend(OW.Fax, OW.Quest, {
 	createData: function(levelData) {
-		return new OW.FaxData(levelData, this);
+		return new OW.FaxData(levelData, this, this);
 	}
 });

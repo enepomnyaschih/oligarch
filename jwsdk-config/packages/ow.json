@@ -50,6 +50,7 @@
 		"ow/punkPwn.js",
 		"ow/punkPwnView.js",
 		"ow/punkPwnView.styl",
+		"ow/randomFax.js",
 		"ow/tube.js",
 		"ow/tube.styl",
 		"ow/tubeViewH.js",
