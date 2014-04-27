@@ -23,5 +23,11 @@ var OW = {
 		oil: 4,
 		digged: 5,
 		metan: 6
+	},
+	
+	sound: function(name) {
+		var el = new Audio();
+		el.src = "audio/" + name + ".ogg";
+		el.play();
 	}
 };

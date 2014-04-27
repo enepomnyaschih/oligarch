@@ -20,6 +20,7 @@ JW.extend(OW.Punk, JW.Class, {
 			this.photoAnim.set(this.photoAnim.get() - 1);
 			if (!this.photoAnim.get()) {
 				this.levelData.blinding.set(OW.blindingTime + 25);
+				OW.sound("photo");
 			}
 			return;
 		}

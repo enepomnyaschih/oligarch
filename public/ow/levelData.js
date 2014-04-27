@@ -73,10 +73,12 @@ JW.extend(OW.LevelData, JW.Class, {
 	
 	nextTurn: function() {
 		if (!this.explosions.isEmpty()) {
+			OW.sound("explosion");
 			alert("Methane has exploded!");
 			this.restart();
 			return;
 		}
+		var oilWas = this.oilRemaining.get();
 		var speed = OW.diggerSpeed;
 		// догребаем к центру
 		if (this.diggerOffset < 0) {
@@ -92,6 +94,9 @@ JW.extend(OW.LevelData, JW.Class, {
 		// отгребаем из центра
 		if (speed) {
 			if (this.diggerOffset === 0) {
+				if (this.map.getCell(this.diggerIj) === OW.map.ground) {
+					OW.sound("drill");
+				}
 				this.setCell(this.diggerIj, OW.map.digged);
 				this.diggedCells[this.diggerIj.join()] = true;
 				for (var d = 0; d < OW.dir.length; ++d) {
@@ -109,6 +114,7 @@ JW.extend(OW.LevelData, JW.Class, {
 				var digIj = this.getDigIj();
 				if (this.map.inMatrix(digIj)) {
 					if (this.diggedCells[digIj.join()]) {
+						OW.sound("explosion");
 						alert("You digged to yourself!");
 						this.restart();
 						return;
@@ -162,6 +168,7 @@ JW.extend(OW.LevelData, JW.Class, {
 			this.punks.removeItem(punk);
 		}, this);
 		if (!punkWins.isEmpty()) {
+			OW.sound("jump");
 			this.punkWins.sort(JW.byField("y"));
 		}
 		if (Math.random() < this.level.countSurface / 200) {
@@ -194,6 +201,9 @@ JW.extend(OW.LevelData, JW.Class, {
 		}
 		this.turn++;
 		this.turnEvent.trigger();
+		if (oilWas !== this.oilRemaining.get()) {
+			OW.sound("oil");
+		}
 	},
 	
 	getFloatIj: function() {
@@ -232,6 +242,7 @@ JW.extend(OW.LevelData, JW.Class, {
 		}
 		if (this.arrestCursor.get()) {
 			this.pwnNow(punk);
+			OW.sound("arrest");
 		} else if (punk.auto) {
 			this.punkPwns.add(new OW.PunkPwn(punk, "o-auto"));
 			var survivor = new OW.Punk(this);
@@ -242,8 +253,10 @@ JW.extend(OW.LevelData, JW.Class, {
 			survivor.auto = false;
 			this.punks.add(survivor);
 			this.punks.removeItem(punk);
+			OW.sound("hit-auto");
 		} else {
 			this.pwnNow(punk);
+			OW.sound("hit");
 		}
 	},
 	

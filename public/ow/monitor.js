@@ -102,8 +102,13 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 	_onStoneClick: function(e) {
 		var target = jQuery(e.currentTarget);
 		var ij = [+target.attr("ow-i").substr(1), +target.attr("ow-j").substr(1)];
-		if ((this.levelData.diggerOffset === 0) && OW.Vector.equal(ij, this.levelData.getDigIj()) && (Math.random() < .2)) {
-			this.levelData.setCell(ij, OW.map.digged);
+		if ((this.levelData.diggerOffset === 0) && OW.Vector.equal(ij, this.levelData.getDigIj())) {
+			if (Math.random() < .2) {
+				this.levelData.setCell(ij, OW.map.digged);
+				OW.sound("hit");
+			} else {
+				OW.sound("hit-auto");
+			}
 		}
 	},
 	

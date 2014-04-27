@@ -9,9 +9,17 @@ JW.extend(OW.JailPanel, JW.UI.Component, {
 			this.el.addClass("o-open");
 			return false;
 		}, this));
+		var soundCounter = 0;
 		this.own(new JW.Interval(function() {
+			if (this.el.hasClass("o-open")) {
+				return;
+			}
 			el.toggleClass("o-blink");
-		}, this, 300));
+			if (soundCounter % 20 < 7) {
+				OW.sound("fax");
+			}
+			++soundCounter;
+		}, this, 150));
 	},
 	
 	renderCount: function(el) {
