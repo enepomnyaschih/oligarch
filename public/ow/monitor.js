@@ -92,6 +92,7 @@ JW.extend(OW.Monitor, JW.UI.Component, {
 		var ij = OW.Vector.mult(this.levelData.getFloatIj(), OW.cellSize);
 		OW.El.xy(el, ij);
 		el.css("transform", "rotate(-" + (90 * this.levelData.diggerDir) + "deg)");
+		el.attr("ow-option", "o" + (Math.floor(this.levelData.turn / 2.5) % 3 + 1));
 	},
 	
 	_getCell: function(ij) {

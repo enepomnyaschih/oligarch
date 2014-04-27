@@ -29,9 +29,18 @@
 			background-image url(../images/metan.png)
 	
 	&-digger
-		background transparent url(../images/digger.png) scroll 0 0 no-repeat
+		background transparent none scroll 0 0 no-repeat
 		position absolute
 		size 16px 16px
+		
+		&[ow-option=o1]
+			background-image url(../images/digger1.png)
+		
+		&[ow-option=o2]
+			background-image url(../images/digger2.png)
+		
+		&[ow-option=o3]
+			background-image url(../images/digger3.png)
 	
 	&-tubes
 	&-punks
