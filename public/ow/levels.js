@@ -104,7 +104,7 @@ OW.Level.registerItem(new OW.Level({
 }));
 
 OW.Level.registerItem(new OW.Level({
-	id: "round6",
+	id: "round7",
 	theme: "siberia",
 	countStone: 8,
 	countOil: 3,

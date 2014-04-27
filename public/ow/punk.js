@@ -6,7 +6,7 @@ OW.Punk = function(levelData) {
 	this.speed = .5 + Math.random();
 	this.anim = this.own(new JW.Property(0));
 	this.photo = Math.random() < levelData.level.probPhoto;
-	this.auto = !this.photo && (Math.random() < levelData.level.allowAuto);
+	this.auto = !this.photo && (Math.random() < levelData.level.probAuto);
 	if (this.auto) {
 		this.speed = 1 + Math.random();
 	}
