@@ -100,15 +100,22 @@ JW.extend(OW.LevelData, JW.Class, {
 			this.setCell(this.diggerIj, OW.map.digged);
 		}
 		// нефть ползет
-		if (this.turn % 20 === 0) {
-			var s = (this.turn % 40 === 0);
+		if (this.turn % 6 === 0) {
+			var s = (this.turn % 12 === 0);
 			for (var i = this.map.size - 1; i >= 0; --i) {
 				for (var j = 0; j < this.map.size; ++j) {
 					var ij = [i, s ? j : (this.map.size - j - 1)];
 					var cell = this.map.getCell(ij);
 					if (cell === OW.map.oil) {
-						this._tryOilCrawl(ij, [1, 0]) ||
-						this._tryOilCrawl(ij, [0, s ? -1 : 1]);
+						if (this._tryOilCrawl(ij, [1, 0])) {
+							continue;
+						}
+						var add = [0, s ? -1 : 1];
+						var adj = OW.Vector.add(ij, add);
+						var underCell = this.map.getCell(OW.Vector.add(adj, [1, 0]));
+						if (underCell === OW.map.digged) {
+							this._tryOilCrawl(ij, add);
+						}
 					}
 				}
 			}
