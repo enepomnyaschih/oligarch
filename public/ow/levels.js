@@ -2,7 +2,7 @@ OW.Level.registerItem(new OW.Level({
 	id: "round1",
 	name: "Drill",
 	theme: "siberia",
-	countStone: 2,
+	countStone: 4,
 	countOil: 1
 }));
 
@@ -10,7 +10,7 @@ OW.Level.registerItem(new OW.Level({
 	id: "round2",
 	name: "Greenpeace",
 	theme: "siberia",
-	countStone: 3,
+	countStone: 6,
 	countOil: 2,
 	countSurface: 3
 }));
