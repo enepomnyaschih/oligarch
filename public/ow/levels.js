@@ -1,5 +1,6 @@
 OW.Level.registerItem(new OW.Level({
 	id: "round1",
+	name: "Drill",
 	theme: "siberia",
 	countStone: 2,
 	countOil: 1
@@ -7,6 +8,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round2",
+	name: "Greenpeace",
 	theme: "siberia",
 	countStone: 3,
 	countOil: 2,
@@ -15,6 +17,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round3",
+	name: "Media",
 	theme: "siberia",
 	countStone: 5,
 	countOil: 2,
@@ -24,6 +27,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round4",
+	name: "Secretary",
 	theme: "siberia",
 	countStone: 6,
 	countOil: 4,
@@ -74,6 +78,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round5",
+	name: "Judo buddy",
 	theme: "siberia",
 	countStone: 8,
 	countOil: 2,
@@ -89,6 +94,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round6",
+	name: "Metan",
 	theme: "siberia",
 	countStone: 8,
 	countOil: 3,
@@ -113,6 +119,7 @@ OW.Level.registerItem(new OW.Level({
 
 OW.Level.registerItem(new OW.Level({
 	id: "round7",
+	name: "Formula 1",
 	theme: "siberia",
 	countStone: 8,
 	countOil: 3,

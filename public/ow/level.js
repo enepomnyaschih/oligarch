@@ -1,6 +1,7 @@
 OW.Level = function(config) {
 	OW.Level._super.call(this);
 	this.id = config.id;
+	this.name = config.name;
 	this.theme = config.theme;
 	this.countStone = config.countStone || 0;
 	this.countOil = config.countOil || 0;
