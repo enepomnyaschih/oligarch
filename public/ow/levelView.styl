@@ -3,6 +3,21 @@
 .ow-level
 	position relative
 	
+	&-start-screen
+		background transparent none scroll 0 0 no-repeat
+		height 500px
+		
+		for num in (0..50)
+			&[ow-level=o{num}]
+				background-image "url(../images/manual%s.png)" % num
+	
+	&-start
+		background transparent url(../images/continue.png) scroll 0 0 no-repeat
+		position absolute
+		right 20px
+		bottom 20px
+		size 150px 30px
+	
 	&-monitor
 		background transparent none scroll 0 0 no-repeat
 		float left

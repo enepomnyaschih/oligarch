@@ -14,6 +14,25 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 		jQuery(window).bind("mousedown", this._onMouseDown);
 	},
 	
+	renderStartScreen: function(el) {
+		el.attr("ow-level", "o" + this.levelData.levelIndex);
+		var visible = this.own(new JW.Functor([this.levelData.interval], function(interval) {
+			return !interval;
+		}, this)).target;
+		this.own(new JW.UI.VisibleUpdater(el, visible));
+	},
+	
+	renderStart: function(el) {
+		el.click(JW.inScope(function() {
+			this.levelData.start();
+			return false;
+		}, this));
+	},
+	
+	renderPlayScreen: function(el) {
+		this.own(new JW.UI.VisibleUpdater(el, this.levelData.interval));
+	},
+	
 	renderMonitor: function() {
 		return this.own(new OW.Monitor(this.levelData));
 	},
@@ -65,11 +84,15 @@ JW.extend(OW.LevelView, JW.UI.Component, {
 	},
 	
 	_onKeyDown: function(e) {
+		if (jQuery(e.target).is("input[type=text]")) {
+			return;
+		}
 		switch (e.keyCode) {
 			case 40: this.levelData.selectedDir = 0; break;
 			case 39: this.levelData.selectedDir = 1; break;
 			case 38: this.levelData.selectedDir = 2; break;
 			case 37: this.levelData.selectedDir = 3; break;
+			case 32: this.levelData.toggleStart(); break;
 		}
 	},
 	

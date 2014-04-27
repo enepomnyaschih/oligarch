@@ -1,7 +1,8 @@
-OW.LevelData = function(data, level) {
+OW.LevelData = function(data, level, levelIndex) {
 	OW.LevelData._super.call(this);
 	this.data = data;
 	this.level = level;
+	this.levelIndex = levelIndex;
 	this.map = new OW.Matrix(level.map.size);
 	var oilCount = 0;
 	for (var i = 0; i < level.map.size; ++i) {
@@ -37,10 +38,24 @@ OW.LevelData = function(data, level) {
 	this.turn = 0;
 	this.turnEvent = this.own(new JW.Event());
 	this.cellChangeEvent = this.own(new JW.Event());
-	this.interval = this.own(new JW.Interval(this.nextTurn, this, 40));
+	this.interval = this.own(new JW.Property()).ownValue();
 };
 
 JW.extend(OW.LevelData, JW.Class, {
+	start: function() {
+		if (!this.interval.get()) {
+			this.interval.set(new JW.Interval(this.nextTurn, this, 40));
+		}
+	},
+	
+	stop: function() {
+		this.interval.set();
+	},
+	
+	toggleStart: function() {
+		this.interval.get() ? this.stop() : this.start();
+	},
+	
 	setCell: function(ij, value) {
 		var oldValue = this.map.getCell(ij);
 		if (oldValue === value) {
@@ -189,6 +204,7 @@ JW.extend(OW.LevelData, JW.Class, {
 		var index = this.data.levelIndex.get();
 		this.data.levelIndex.set(null);
 		this.data.levelIndex.set(index);
+		this.data.levelData.get().start();
 	},
 	
 	winQuest: function() {
@@ -199,7 +215,7 @@ JW.extend(OW.LevelData, JW.Class, {
 	pwn: function(punk) {
 		var jailCount = this.jailCount.get();
 		if (JW.isSet(jailCount)) {
-			if (!this.arrestCursor.get() && (this.jailCurrent === jailCount - 1)) {
+			if (!this.arrestCursor.get() && !punk.auto && (this.jailCurrent === jailCount - 1)) {
 				alert("You repelled a Greenpeace member that you must've arrested!");
 				this.restart();
 				return;
