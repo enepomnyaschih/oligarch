@@ -73,8 +73,7 @@ JW.extend(OW.LevelData, JW.Class, {
 	
 	nextTurn: function() {
 		if (!this.explosions.isEmpty()) {
-			OW.sound("explosion");
-			alert("Methane has exploded!");
+			alert("Something has exploded!");
 			this.restart();
 			return;
 		}
@@ -102,6 +101,7 @@ JW.extend(OW.LevelData, JW.Class, {
 				for (var d = 0; d < OW.dir.length; ++d) {
 					var adj = OW.Vector.add(this.diggerIj, OW.dir[d]);
 					if (this.map.getCell(adj) === OW.map.metan) {
+						OW.sound("explosion");
 						this.explosions.add(new OW.Explosion(OW.Vector.mult(OW.Vector.add(adj, [.5, .5]), OW.cellSize)));
 					}
 				}
@@ -115,9 +115,7 @@ JW.extend(OW.LevelData, JW.Class, {
 				if (this.map.inMatrix(digIj)) {
 					if (this.diggedCells[digIj.join()]) {
 						OW.sound("explosion");
-						alert("You digged to yourself!");
-						this.restart();
-						return;
+						this.explosions.add(new OW.Explosion(OW.Vector.mult(OW.Vector.add(digIj, [.5, .5]), OW.cellSize)));
 					}
 					if ((this.map.getCell(digIj) !== OW.map.stone) && (digIj[0] > OW.surfaceI)) {
 						this.diggerOffset += speed;
@@ -178,6 +176,7 @@ JW.extend(OW.LevelData, JW.Class, {
 		if (this.oilRemaining.get() === 0) {
 			alert("You win!");
 			this.data.nextLevel();
+			return;
 		}
 		if (this.punkWins.length.get() >= OW.maxPunksAllowed) {
 			alert("Too much Greenpeace got onto the platform!");
